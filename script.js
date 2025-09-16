@@ -793,34 +793,24 @@ function initImagePopup() {
     
     console.log('Initializing popup...');
     
-    // Show popup every time the page loads
+    // Show popup function
     function showPopup() {
         console.log('Showing popup...');
         popup.classList.add('show');
-        document.body.style.overflow = 'hidden';
+        // Don't disable body scroll to avoid layout issues
+        // document.body.style.overflow = 'hidden';
     }
-    
-    // Show popup after a short delay to ensure page is loaded
-    setTimeout(showPopup, 1000);
-    
-    // Also try to show immediately if image is already loaded
-    if (popupImage.complete && popupImage.naturalHeight !== 0) {
-        console.log('Image already loaded, showing popup immediately');
-        showPopup();
-    }
-    
-    // Show popup when image loads
-    popupImage.addEventListener('load', function() {
-        console.log('Image loaded, showing popup');
-        showPopup();
-    });
     
     // Close popup functionality
     function closePopup() {
         console.log('Closing popup...');
         popup.classList.remove('show');
+        // Ensure body scroll is restored
         document.body.style.overflow = 'auto';
     }
+    
+    // Only show popup on user interaction, not automatically
+    // Remove automatic popup display to prevent layout issues
     
     // Close button click
     closeBtn.addEventListener('click', closePopup);
@@ -838,4 +828,7 @@ function initImagePopup() {
             closePopup();
         }
     });
+    
+    // Add a way to manually trigger the popup if needed
+    window.showImagePopup = showPopup;
 }
