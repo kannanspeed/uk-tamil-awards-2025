@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', function() {
     initCountdownTimer();
     initParallaxScrolling();
     initMobileMenu();
-    initMemberFilters();
     initGalleryFilters();
     initSponsorCarousel();
     initContactForm();
@@ -13,6 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initScrollAnimations();
     initImagePopup();
     initPerformanceMonitoring();
+    initFloatingVideoCard();
 });
 
 // Performance monitoring for images
@@ -175,8 +175,8 @@ function optimizeAllImages() {
 
 // Countdown Timer Functionality
 function initCountdownTimer() {
-    // Set the target date to November 1st, 2025
-    const targetDate = new Date('November 1, 2025 00:00:00');
+    // Set the target date to November 2nd, 2025
+    const targetDate = new Date('November 2, 2025 00:00:00');
     
     function updateTimer() {
         const now = new Date().getTime();
@@ -243,38 +243,6 @@ function initMobileMenu() {
     });
 }
 
-// Member Filter Functionality
-function initMemberFilters() {
-    const filterButtons = document.querySelectorAll('.filter-btn');
-    const memberCards = document.querySelectorAll('.member-card');
-    
-    filterButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            // Remove active class from all buttons
-            filterButtons.forEach(btn => btn.classList.remove('active'));
-            // Add active class to clicked button
-            button.classList.add('active');
-            
-            const filter = button.getAttribute('data-filter');
-            
-            memberCards.forEach(card => {
-                const category = card.getAttribute('data-category');
-                
-                if (filter === 'all' || category === filter) {
-                    card.classList.remove('hidden');
-                    setTimeout(() => {
-                        card.style.display = 'block';
-                    }, 100);
-                } else {
-                    card.classList.add('hidden');
-                    setTimeout(() => {
-                        card.style.display = 'none';
-                    }, 300);
-                }
-            });
-        });
-    });
-}
 
 // Gallery Filter Functionality
 function initGalleryFilters() {
@@ -760,6 +728,137 @@ function initScrollProgress() {
 
 // Initialize scroll progress
 initScrollProgress();
+
+// Floating Video Card Functionality
+function initFloatingVideoCard() {
+    const video = document.getElementById('heroVideo');
+    const playBtn = document.getElementById('videoPlayBtn');
+    const muteBtn = document.getElementById('videoMuteBtn');
+    const videoCard = document.querySelector('.video-card-3d');
+    
+    if (!video || !playBtn || !muteBtn) {
+        console.log('Video elements not found');
+        return;
+    }
+    
+    let isPlaying = false;
+    let isMuted = true; // Start muted for better UX
+    
+    // YouTube API ready
+    function onYouTubeIframeAPIReady() {
+        console.log('YouTube API ready');
+    }
+    
+    // Play/Pause functionality
+    playBtn.addEventListener('click', function() {
+        if (isPlaying) {
+            video.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+            playBtn.innerHTML = '<i class="fas fa-play"></i>';
+            isPlaying = false;
+        } else {
+            video.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+            playBtn.innerHTML = '<i class="fas fa-pause"></i>';
+            isPlaying = true;
+        }
+    });
+    
+    // Mute/Unmute functionality
+    muteBtn.addEventListener('click', function() {
+        if (isMuted) {
+            video.contentWindow.postMessage('{"event":"command","func":"unMute","args":""}', '*');
+            muteBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+            isMuted = false;
+        } else {
+            video.contentWindow.postMessage('{"event":"command","func":"mute","args":""}', '*');
+            muteBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
+            isMuted = true;
+        }
+    });
+    
+    // Enhanced 3D hover effects
+    videoCard.addEventListener('mouseenter', function() {
+        this.style.transform = 'rotateY(15deg) rotateX(5deg) translateZ(30px) scale(1.05)';
+    });
+    
+    videoCard.addEventListener('mouseleave', function() {
+        this.style.transform = '';
+    });
+    
+    // Touch interactions for mobile
+    let touchStartY = 0;
+    let touchStartX = 0;
+    
+    videoCard.addEventListener('touchstart', function(e) {
+        touchStartY = e.touches[0].clientY;
+        touchStartX = e.touches[0].clientX;
+    });
+    
+    videoCard.addEventListener('touchend', function(e) {
+        const touchEndY = e.changedTouches[0].clientY;
+        const touchEndX = e.changedTouches[0].clientX;
+        const deltaY = touchStartY - touchEndY;
+        const deltaX = touchStartX - touchEndX;
+        
+        // Simple tap detection
+        if (Math.abs(deltaY) < 10 && Math.abs(deltaX) < 10) {
+            // Toggle play/pause on tap
+            if (isPlaying) {
+                video.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+                playBtn.innerHTML = '<i class="fas fa-play"></i>';
+                isPlaying = false;
+            } else {
+                video.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+                playBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                isPlaying = true;
+            }
+        }
+    });
+    
+    // Auto-pause when video goes out of viewport (performance optimization)
+    const videoObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting && isPlaying) {
+                video.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+                playBtn.innerHTML = '<i class="fas fa-play"></i>';
+                isPlaying = false;
+            }
+        });
+    }, { threshold: 0.5 });
+    
+    videoObserver.observe(video);
+    
+    // Performance optimization: Reduce quality on mobile
+    if (window.innerWidth <= 768) {
+        const currentSrc = video.src;
+        const optimizedSrc = currentSrc.replace('autoplay=0', 'autoplay=0&vq=small');
+        video.src = optimizedSrc;
+    }
+    
+    // Add loading state
+    video.addEventListener('load', function() {
+        console.log('Video loaded successfully');
+        videoCard.classList.add('video-loaded');
+    });
+    
+    // Error handling
+    video.addEventListener('error', function() {
+        console.log('Video failed to load');
+        const fallbackDiv = document.createElement('div');
+        fallbackDiv.className = 'video-fallback';
+        fallbackDiv.innerHTML = `
+            <div class="fallback-content">
+                <i class="fas fa-video"></i>
+                <p>Video temporarily unavailable</p>
+                <a href="https://youtu.be/BCHLbx3tQ9s" target="_blank" class="fallback-link">
+                    Watch on YouTube
+                </a>
+            </div>
+        `;
+        video.parentNode.replaceChild(fallbackDiv, video);
+    });
+    
+    console.log('Floating video card initialized');
+}
 
 // Popup image loading functions
 function hideLoadingSpinner() {

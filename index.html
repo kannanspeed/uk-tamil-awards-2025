@@ -44,7 +44,7 @@
         </nav>
     </header>
 
-    <!-- Hero Section - Parallax Scrolling with Timer -->
+    <!-- Hero Section - Parallax Scrolling with Timer and Floating Video Card -->
     <main id="main-content">
     <section id="home" class="hero">
         <div class="hero-background">
@@ -52,6 +52,34 @@
             <div class="parallax-layer layer-2"></div>
             <div class="parallax-layer layer-3"></div>
         </div>
+        
+        <!-- Floating Video Card -->
+        <div class="floating-video-card">
+            <div class="video-card-3d">
+                <div class="video-container">
+                    <iframe 
+                        id="heroVideo"
+                        src="https://www.youtube.com/embed/BCHLbx3tQ9s?enablejsapi=1&controls=1&modestbranding=1&rel=0&showinfo=0&autoplay=0&mute=1&loop=1&playlist=BCHLbx3tQ9s"
+                        title="UK Tamil Awards 2025 - Celebrating Excellence in Tamil Community"
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
+                    <div class="video-overlay">
+                        <div class="video-controls">
+                            <button class="video-play-btn" id="videoPlayBtn">
+                                <i class="fas fa-play"></i>
+                            </button>
+                            <button class="video-mute-btn" id="videoMuteBtn">
+                                <i class="fas fa-volume-up"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="video-card-glow"></div>
+            </div>
+        </div>
+        
         <div class="hero-content">
             <h1 class="hero-title">UK Tamil Awards 2025</h1>
             <p class="hero-subtitle">Celebrating Excellence in Tamil Community</p>
@@ -82,11 +110,39 @@
         <div class="container">
             <div class="banner-content">
                 <h2 class="banner-title">UK Tamil Awards 2025 - Award Categories</h2>
-                <div class="awards-categories-image">
-                    <img src="https://czmvzpnsyxehilmeuncm.supabase.co/storage/v1/object/sign/uktamil/AWARDS%20CATEGORIES.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8yNDIwMDM4ZC1iY2UxLTRiZjctYmY0NS03Zjc2ZDY3YzNiZGIiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJ1a3RhbWlsL0FXQVJEUyBDQVRFR09SSUVTLnBuZyIsImlhdCI6MTc1ODA1MTUyNSwiZXhwIjoxNzg5NTg3NTI1fQ.WJhaO__k9ELFgt_xNPZehPp4USvDmjAnFbnjk3-BOOw" 
-                         alt="UK Tamil Awards 2025 - Award Categories" 
-                         loading="lazy"
-                         class="categories-image">
+                <div class="awards-categories-content">
+                    <div class="categories-grid">
+                        <div class="category-card">
+                            <div class="category-icon">🎭</div>
+                            <h3>Arts & Entertainment</h3>
+                            <p>Recognizing excellence in performing arts, music, and creative expression</p>
+                        </div>
+                        <div class="category-card">
+                            <div class="category-icon">💼</div>
+                            <h3>Business & Entrepreneurship</h3>
+                            <p>Celebrating innovative business leaders and successful entrepreneurs</p>
+                        </div>
+                        <div class="category-card">
+                            <div class="category-icon">🏆</div>
+                            <h3>Sports & Athletics</h3>
+                            <p>Honoring outstanding achievements in sports and physical excellence</p>
+                        </div>
+                        <div class="category-card">
+                            <div class="category-icon">🎓</div>
+                            <h3>Education & Academia</h3>
+                            <p>Recognizing contributions to education and academic excellence</p>
+                        </div>
+                        <div class="category-card">
+                            <div class="category-icon">💻</div>
+                            <h3>Technology & Innovation</h3>
+                            <p>Celebrating tech pioneers and innovative solutions</p>
+                        </div>
+                        <div class="category-card">
+                            <div class="category-icon">❤️</div>
+                            <h3>Community Service</h3>
+                            <p>Honoring those who make a positive impact in their communities</p>
+                        </div>
+                    </div>
                 </div>
                 <p class="banner-subtitle">Nominations are now open! Click below to nominate yourself or someone you know</p>
                 <button class="nomination-btn">Nominate Now</button>
@@ -112,7 +168,7 @@
                         <i class="fas fa-calendar"></i>
                     </div>
                     <h3>Event Date Confirmed</h3>
-                    <p>Mark your calendars! The UK Tamil Awards 2025 will be held on November 1st, 2025 at the prestigious London Convention Centre.</p>
+                    <p>Mark your calendars! The UK Tamil Awards 2024 will be held on November 2nd, 2024 at the prestigious London Convention Centre.</p>
                     <a href="#" class="card-link">View Details</a>
                 </div>
                 <div class="announcement-card">
@@ -133,8 +189,20 @@
             <div class="about-content">
                 <div class="about-text">
                     <h2>About UK Tamil Awards</h2>
-                    <p>The UK Tamil Awards is an annual celebration that recognizes and honors outstanding achievements within the Tamil community in the United Kingdom. Since its inception, we have been committed to celebrating excellence across various fields including arts, business, sports, education, and community service.</p>
-                    <p>Our mission is to inspire the next generation of Tamil leaders and create a platform for recognition that encourages continued excellence and community contribution.</p>
+                    <h3>Welcome to the UK Awards 2024</h3>
+                    <p>We are thrilled to invite you to the prestigious UK Tamil Awards, an event dedicated to celebrating the remarkable achievements of South Asian individuals across various industries. Mark your calendars for November 2nd, 2024, as we come together to honor the exceptional contributions and talents of our community.</p>
+                    
+                    <h3>Recognizing Excellence</h3>
+                    <p>The UK Tamil Awards aims to shine a spotlight on the outstanding work and accomplishments of professionals who have made significant impacts in their respective fields. From arts and entertainment to business and technology, our awards will highlight the diverse talents and hard work of South Asian individuals who have excelled and inspired.</p>
+                    
+                    <h3>Celebrating Youth Sportsmanship</h3>
+                    <p>In addition to recognizing professional achievements, we are proud to celebrate the sportsmanship and dedication of young athletes within our community. The UK Tamil Awards will honor young sports enthusiasts who have demonstrated exceptional skill, determination, and a spirit of fair play.</p>
+                    
+                    <h3>An Inclusive Celebration</h3>
+                    <p>While our event highlights the contributions of the Tamil community, the UK Tamil Awards warmly embraces individuals from all South Asian backgrounds. Our celebration is inclusive, recognizing the diversity and unity that enriches our society.</p>
+                    
+                    <p><strong>Join us for an unforgettable evening of inspiration, recognition, and celebration. Together, let's honor the brilliance and diversity of the South Asian community at the UK Tamil Awards 2024.</strong></p>
+                    
                     <div class="about-stats">
                         <div class="stat-item">
                             <span class="stat-number">500+</span>
@@ -166,40 +234,13 @@
             <h2 class="section-title">Our Founder Members</h2>
             <div class="founders-grid">
                 <div class="founder-card">
-                    <div class="founder-image">
-                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=60" alt="Dr. Rajesh Kumar" loading="lazy">
-                    </div>
-                    <h3>Dr. Rajesh Kumar</h3>
-                    <p class="founder-title">Chief Executive Officer</p>
-                    <p class="founder-bio">Visionary leader with 20+ years in community development and cultural preservation.</p>
-                    <div class="founder-social">
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                    </div>
+                    <h3 class="premium-name">Shivanthy Susinthiran</h3>
                 </div>
                 <div class="founder-card">
-                    <div class="founder-image">
-                        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=60" alt="Priya Sharma">
-                    </div>
-                    <h3>Priya Sharma</h3>
-                    <p class="founder-title">Cultural Director</p>
-                    <p class="founder-bio">Passionate advocate for Tamil arts and culture with extensive experience in event management.</p>
-                    <div class="founder-social">
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
+                    <h3 class="premium-name">Paul Sathianesan</h3>
                 </div>
                 <div class="founder-card">
-                    <div class="founder-image">
-                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=60" alt="Arun Patel">
-                    </div>
-                    <h3>Arun Patel</h3>
-                    <p class="founder-title">Business Development</p>
-                    <p class="founder-bio">Successful entrepreneur and community leader with a focus on youth development programs.</p>
-                    <div class="founder-social">
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
-                        <a href="#"><i class="fab fa-facebook"></i></a>
-                    </div>
+                    <h3 class="premium-name">Ratnam Sugunanatharaja</h3>
                 </div>
             </div>
         </div>
@@ -211,137 +252,24 @@
             <h2 class="section-title">Our Co-Founder Members</h2>
             <div class="co-founders-grid">
                 <div class="co-founder-card">
-                    <div class="card-front">
-                        <div class="co-founder-image">
-                            <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=60" alt="Meera Krishnan">
-                        </div>
-                        <h3>Meera Krishnan</h3>
-                        <p>Marketing Director</p>
-                    </div>
-                    <div class="card-back">
-                        <h3>Meera Krishnan</h3>
-                        <p>Marketing Director with expertise in digital marketing and brand development. Leads our outreach initiatives.</p>
-                        <div class="co-founder-social">
-                            <a href="#"><i class="fab fa-linkedin"></i></a>
-                            <a href="#"><i class="fab fa-twitter"></i></a>
-                        </div>
-                    </div>
+                    <h3 class="premium-name">Thurairajah Pirabaharan</h3>
                 </div>
                 <div class="co-founder-card">
-                    <div class="card-front">
-                        <div class="co-founder-image">
-                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=60" alt="Vikram Singh">
-                        </div>
-                        <h3>Vikram Singh</h3>
-                        <p>Technical Director</p>
-                    </div>
-                    <div class="card-back">
-                        <h3>Vikram Singh</h3>
-                        <p>Technical Director overseeing all digital platforms and technology infrastructure for the awards.</p>
-                        <div class="co-founder-social">
-                            <a href="#"><i class="fab fa-linkedin"></i></a>
-                            <a href="#"><i class="fab fa-github"></i></a>
-                        </div>
-                    </div>
+                    <h3 class="premium-name">Selvanayagam Sathanathan</h3>
                 </div>
                 <div class="co-founder-card">
-                    <div class="card-front">
-                        <div class="co-founder-image">
-                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=60" alt="Deepa Nair">
-                        </div>
-                        <h3>Deepa Nair</h3>
-                        <p>Finance Director</p>
-                    </div>
-                    <div class="card-back">
-                        <h3>Deepa Nair</h3>
-                        <p>Finance Director managing budgets and financial planning for all award ceremonies and community programs.</p>
-                        <div class="co-founder-social">
-                            <a href="#"><i class="fab fa-linkedin"></i></a>
-                            <a href="#"><i class="fab fa-twitter"></i></a>
-                        </div>
-                    </div>
+                    <h3 class="premium-name">Krisha Kamal</h3>
+                </div>
+                <div class="co-founder-card">
+                    <h3 class="premium-name">Veluppillai Jegendirabose</h3>
+                </div>
+                <div class="co-founder-card">
+                    <h3 class="premium-name">Deva Mahathevan</h3>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Other Members Section - Filterable Grid -->
-    <section class="other-members">
-        <div class="container">
-            <h2 class="section-title">Our Team Members</h2>
-            <div class="member-filters">
-                <button class="filter-btn active" data-filter="all">All</button>
-                <button class="filter-btn" data-filter="management">Management</button>
-                <button class="filter-btn" data-filter="volunteers">Volunteers</button>
-                <button class="filter-btn" data-filter="advisors">Advisors</button>
-            </div>
-            <div class="members-grid">
-                <div class="member-card" data-category="management">
-                    <div class="member-image">
-                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=60" alt="Karthik Menon">
-                    </div>
-                    <h3>Karthik Menon</h3>
-                    <p>Event Coordinator</p>
-                </div>
-                <div class="member-card" data-category="volunteers">
-                    <div class="member-image">
-                        <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=60" alt="Sunita Reddy">
-                    </div>
-                    <h3>Sunita Reddy</h3>
-                    <p>Volunteer Coordinator</p>
-                </div>
-                <div class="member-card" data-category="advisors">
-                    <div class="member-image">
-                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=60" alt="Dr. Suresh Iyer">
-                    </div>
-                    <h3>Dr. Suresh Iyer</h3>
-                    <p>Cultural Advisor</p>
-                </div>
-                <div class="member-card" data-category="management">
-                    <div class="member-image">
-                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=60" alt="Anita Gupta">
-                    </div>
-                    <h3>Anita Gupta</h3>
-                    <p>Media Relations</p>
-                </div>
-                <div class="member-card" data-category="volunteers">
-                    <div class="member-image">
-                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=60" alt="Ravi Kumar">
-                    </div>
-                    <h3>Ravi Kumar</h3>
-                    <p>Logistics Coordinator</p>
-                </div>
-                <div class="member-card" data-category="advisors">
-                    <div class="member-image">
-                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=60" alt="Prof. Lakshmi Rao">
-                    </div>
-                    <h3>Prof. Lakshmi Rao</h3>
-                    <p>Education Advisor</p>
-                </div>
-                <div class="member-card" data-category="management">
-                    <div class="member-image">
-                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=60" alt="Michael Chen">
-                    </div>
-                    <h3>Michael Chen</h3>
-                    <p>Operations Manager</p>
-                </div>
-                <div class="member-card" data-category="volunteers">
-                    <div class="member-image">
-                        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=60" alt="Sarah Johnson">
-                    </div>
-                    <h3>Sarah Johnson</h3>
-                    <p>Community Outreach</p>
-                </div>
-                <div class="member-card" data-category="advisors">
-                    <div class="member-image">
-                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=60" alt="David Williams">
-                    </div>
-                    <h3>David Williams</h3>
-                    <p>Legal Advisor</p>
-                </div>
-            </div>
-        </div>
-    </section>
 
 
     <!-- Sponsor Rate Card Section - Tiered Packages -->
