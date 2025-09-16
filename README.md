@@ -53,7 +53,7 @@ uktamilawards/
 ├── script.js           # JavaScript functionality
 ├── package.json        # Node.js dependencies and scripts
 ├── server.js           # Express server for deployment
-├── render.yaml         # Render deployment configuration
+├── vercel.json         # Vercel deployment configuration
 └── README.md           # This file
 ```
 
@@ -70,30 +70,38 @@ uktamilawards/
 8. **Ticket Selection**: Click on ticket options to select packages
 9. **Sponsor Packages**: Choose from different sponsorship tiers
 
-### Deployment on Render
+### Deployment on Vercel
 
-#### Option 1: Deploy from GitHub Repository
+#### Option 1: Deploy from GitHub Repository (Recommended)
 1. **Push to GitHub**: Push this repository to your GitHub account
-2. **Connect to Render**: 
-   - Go to [render.com](https://render.com)
+2. **Connect to Vercel**: 
+   - Go to [vercel.com](https://vercel.com)
    - Sign up/Login with your GitHub account
-   - Click "New +" and select "Web Service"
+   - Click "New Project"
 3. **Configure Deployment**:
-   - Connect your GitHub repository
-   - Render will automatically detect the `render.yaml` configuration
-   - The service will be named "uk-tamil-awards-2025"
-4. **Deploy**: Click "Create Web Service" and Render will automatically deploy your site
+   - Import your GitHub repository: `kannanspeed/uk-tamil-awards-2025`
+   - Vercel will automatically detect the configuration
+   - The project will be named "uk-tamil-awards-2025"
+4. **Deploy**: Click "Deploy" and Vercel will automatically deploy your site
 
-#### Option 2: Manual Configuration
-1. **Create New Web Service** on Render
-2. **Set Build Command**: `npm install`
-3. **Set Start Command**: `npm start`
-4. **Set Environment**: Node.js
-5. **Deploy**: Your site will be available at a `*.onrender.com` URL
+#### Option 2: Vercel CLI Deployment
+1. **Install Vercel CLI**: `npm i -g vercel`
+2. **Login to Vercel**: `vercel login`
+3. **Deploy**: `vercel --prod`
+4. **Your site will be available at a `*.vercel.app` URL**
+
+#### Option 3: Manual Configuration
+1. **Create New Project** on Vercel
+2. **Connect GitHub Repository**: `kannanspeed/uk-tamil-awards-2025`
+3. **Build Settings**: 
+   - Build Command: `npm run build`
+   - Output Directory: `.`
+   - Install Command: `npm install`
+4. **Deploy**: Your site will be available at a `*.vercel.app` URL
 
 #### Environment Variables
-- `NODE_ENV`: Set to `production` (automatically configured in render.yaml)
-- `PORT`: Automatically set by Render (no configuration needed)
+- `NODE_ENV`: Automatically set to `production` by Vercel
+- `PORT`: Automatically set by Vercel (no configuration needed)
 
 ## Customization
 
