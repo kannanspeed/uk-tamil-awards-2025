@@ -4,8 +4,8 @@
   "description": "UK Tamil Awards 2025 - A beautiful, modern mobile-first website for the UK Tamil Awards event",
   "main": "index.html",
   "scripts": {
-    "start": "node server.js",
-    "dev": "node server.js",
+    "start": "echo 'Static site - open index.html in browser'",
+    "dev": "echo 'Static site - open index.html in browser'",
     "build": "echo 'Static site - no build required'",
     "vercel-build": "echo 'Static site - no build required'"
   },
@@ -21,9 +21,6 @@
   ],
   "author": "UK Tamil Awards Team",
   "license": "MIT",
-  "dependencies": {
-    "express": "^4.18.2"
-  },
   "engines": {
     "node": ">=18.0.0"
   }
