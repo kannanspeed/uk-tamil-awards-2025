@@ -5,7 +5,21 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Serve static files from the current directory
-app.use(express.static(path.join(__dirname)));
+app.use(express.static(path.join(__dirname), {
+  maxAge: '1d', // Cache static files for 1 day
+  etag: true
+}));
+
+// Set proper MIME types for CSS and JS files
+app.use('/styles.css', (req, res, next) => {
+  res.setHeader('Content-Type', 'text/css');
+  next();
+});
+
+app.use('/script.js', (req, res, next) => {
+  res.setHeader('Content-Type', 'application/javascript');
+  next();
+});
 
 // Handle client-side routing - serve index.html for all routes
 app.get('*', (req, res) => {
