@@ -28,7 +28,29 @@ function initMobileOptimizations() {
     document.body.style.webkitOverflowScrolling = 'touch';
     
     // Optimize images for mobile
-    optimizeAllImages();
+    const images = document.querySelectorAll('img');
+    images.forEach(img => {
+        img.loading = 'lazy';
+        img.decoding = 'async';
+        
+        // Add loading state
+        img.classList.add('loading');
+        
+        // Handle successful load
+        img.addEventListener('load', function() {
+            this.classList.remove('loading');
+            this.classList.add('loaded');
+        });
+        
+        // Add error handling
+        img.addEventListener('error', function() {
+            this.style.display = 'none';
+            const placeholder = document.createElement('div');
+            placeholder.className = 'image-placeholder';
+            placeholder.innerHTML = '<i class="fas fa-image"></i><p>Image not available</p>';
+            this.parentNode.insertBefore(placeholder, this);
+        });
+    });
     
     // Add touch feedback for interactive elements
     const interactiveElements = document.querySelectorAll('.announcement-card, .founder-card, .ticket-card, .sponsor-tier, .gallery-item');
@@ -47,48 +69,21 @@ function initMobileOptimizations() {
     if (viewport) {
         viewport.content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no';
     }
-}
-
-// Comprehensive image optimization
-function optimizeAllImages() {
-    const images = document.querySelectorAll('img');
     
-    images.forEach(img => {
-        // Add lazy loading and async decoding
-        img.loading = 'lazy';
-        img.decoding = 'async';
-        
-        // Add loading placeholder
-        if (!img.style.backgroundImage) {
-            img.style.backgroundColor = '#f0f0f0';
-            img.style.minHeight = '200px';
-        }
-        
-        // Optimize Unsplash images for mobile
-        if (img.src.includes('unsplash.com')) {
-            // Replace with mobile-optimized version
-            const originalSrc = img.src;
-            const optimizedSrc = originalSrc
-                .replace(/w=\d+/, 'w=400')  // Reduce width to 400px
-                .replace(/q=\d+/, 'q=60');  // Reduce quality to 60%
-            
-            img.src = optimizedSrc;
-            
-            // Add error handling
-            img.addEventListener('error', function() {
-                this.src = originalSrc; // Fallback to original
-            });
-        }
-        
-        // Add loading animation
-        img.addEventListener('load', function() {
-            this.style.opacity = '1';
-            this.style.transition = 'opacity 0.3s ease';
+    // Lazy load iframes (Google Maps)
+    const iframes = document.querySelectorAll('iframe[data-src]');
+    const iframeObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const iframe = entry.target;
+                iframe.src = iframe.dataset.src;
+                iframe.removeAttribute('data-src');
+                iframeObserver.unobserve(iframe);
+            }
         });
-        
-        // Set initial opacity for fade-in effect
-        img.style.opacity = '0';
     });
+    
+    iframes.forEach(iframe => iframeObserver.observe(iframe));
 }
 
 // Countdown Timer Functionality
@@ -604,72 +599,6 @@ function initLazyLoading() {
 // Initialize lazy loading
 initLazyLoading();
 
-// Preload critical images
-function preloadCriticalImages() {
-    const criticalImages = [
-        'https://images.unsplash.com/photo-1511578314322-379afb476865?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=60',
-        'https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=60'
-    ];
-    
-    criticalImages.forEach(src => {
-        const link = document.createElement('link');
-        link.rel = 'preload';
-        link.as = 'image';
-        link.href = src;
-        document.head.appendChild(link);
-    });
-}
-
-// Initialize preloading
-preloadCriticalImages();
-
-// Image loading progress indicator
-function initImageLoadingProgress() {
-    const images = document.querySelectorAll('img');
-    let loadedImages = 0;
-    const totalImages = images.length;
-    
-    const progressBar = document.createElement('div');
-    progressBar.id = 'imageLoadingProgress';
-    progressBar.style.cssText = `
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 0%;
-        height: 3px;
-        background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-        z-index: 10000;
-        transition: width 0.3s ease;
-    `;
-    document.body.appendChild(progressBar);
-    
-    images.forEach(img => {
-        img.addEventListener('load', function() {
-            loadedImages++;
-            const progress = (loadedImages / totalImages) * 100;
-            progressBar.style.width = progress + '%';
-            
-            if (loadedImages === totalImages) {
-                setTimeout(() => {
-                    progressBar.style.opacity = '0';
-                    setTimeout(() => {
-                        progressBar.remove();
-                    }, 300);
-                }, 500);
-            }
-        });
-        
-        img.addEventListener('error', function() {
-            loadedImages++;
-            const progress = (loadedImages / totalImages) * 100;
-            progressBar.style.width = progress + '%';
-        });
-    });
-}
-
-// Initialize image loading progress
-initImageLoadingProgress();
-
 // Add some interactive hover effects
 document.addEventListener('DOMContentLoaded', function() {
     // Add ripple effect to buttons
@@ -793,24 +722,34 @@ function initImagePopup() {
     
     console.log('Initializing popup...');
     
-    // Show popup function
+    // Show popup every time the page loads
     function showPopup() {
         console.log('Showing popup...');
         popup.classList.add('show');
-        // Don't disable body scroll to avoid layout issues
-        // document.body.style.overflow = 'hidden';
+        document.body.style.overflow = 'hidden';
     }
+    
+    // Show popup after a short delay to ensure page is loaded
+    setTimeout(showPopup, 1000);
+    
+    // Also try to show immediately if image is already loaded
+    if (popupImage.complete && popupImage.naturalHeight !== 0) {
+        console.log('Image already loaded, showing popup immediately');
+        showPopup();
+    }
+    
+    // Show popup when image loads
+    popupImage.addEventListener('load', function() {
+        console.log('Image loaded, showing popup');
+        showPopup();
+    });
     
     // Close popup functionality
     function closePopup() {
         console.log('Closing popup...');
         popup.classList.remove('show');
-        // Ensure body scroll is restored
         document.body.style.overflow = 'auto';
     }
-    
-    // Only show popup on user interaction, not automatically
-    // Remove automatic popup display to prevent layout issues
     
     // Close button click
     closeBtn.addEventListener('click', closePopup);
@@ -828,7 +767,4 @@ function initImagePopup() {
             closePopup();
         }
     });
-    
-    // Add a way to manually trigger the popup if needed
-    window.showImagePopup = showPopup;
 }

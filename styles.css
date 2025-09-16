@@ -1942,13 +1942,11 @@ html {
     opacity: 0;
     visibility: hidden;
     transition: all 0.3s ease;
-    pointer-events: none;
 }
 
 .image-popup.show {
     opacity: 1;
     visibility: visible;
-    pointer-events: auto;
 }
 
 .popup-content {
@@ -2084,41 +2082,51 @@ img {
     height: auto;
     display: block;
     transition: opacity 0.3s ease;
-    background-color: #f0f0f0;
-    background-image: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    opacity: 0;
+}
+
+img.loaded {
+    opacity: 1;
+}
+
+/* Image loading states */
+.image-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #f8f9fa;
+    color: #666;
+    min-height: 200px;
+    border-radius: 8px;
+    border: 2px dashed #ddd;
+}
+
+.image-placeholder i {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    opacity: 0.5;
+}
+
+.image-placeholder p {
+    font-size: 0.9rem;
+    margin: 0;
+    opacity: 0.7;
+}
+
+/* Loading skeleton for images */
+img:not(.loaded) {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
     background-size: 200% 100%;
     animation: loading 1.5s infinite;
 }
 
-/* Loading animation for images */
 @keyframes loading {
     0% {
         background-position: 200% 0;
     }
     100% {
         background-position: -200% 0;
-    }
-}
-
-/* Remove loading animation when image is loaded */
-img[src] {
-    animation: none;
-    background: none;
-}
-
-/* Optimized image sizes for mobile */
-@media (max-width: 768px) {
-    img {
-        max-width: 100%;
-        height: auto;
-    }
-    
-    /* Reduce image quality on mobile for faster loading */
-    .about-image img,
-    .founder-image img,
-    .gallery-item img {
-        max-height: 300px;
-        object-fit: cover;
     }
 }
 
