@@ -2121,6 +2121,28 @@ img:not(.loaded) {
     animation: loading 1.5s infinite;
 }
 
+/* Blur-to-sharp loading effect */
+.blur-load {
+    filter: blur(5px);
+    transition: filter 0.3s ease;
+}
+
+.blur-load.loaded {
+    filter: blur(0);
+}
+
+/* Progressive loading effect */
+.progressive-load {
+    opacity: 0;
+    transform: scale(0.95);
+    transition: all 0.5s ease;
+}
+
+.progressive-load.loaded {
+    opacity: 1;
+    transform: scale(1);
+}
+
 @keyframes loading {
     0% {
         background-position: 200% 0;

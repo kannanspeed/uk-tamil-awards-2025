@@ -12,7 +12,38 @@ document.addEventListener('DOMContentLoaded', function() {
     initSmoothScrolling();
     initScrollAnimations();
     initImagePopup();
+    initPerformanceMonitoring();
 });
+
+// Performance monitoring for images
+function initPerformanceMonitoring() {
+    // Monitor image loading performance
+    const observer = new PerformanceObserver((list) => {
+        list.getEntries().forEach((entry) => {
+            if (entry.name.includes('unsplash.com')) {
+                console.log(`Image loaded in ${entry.duration}ms:`, entry.name);
+                
+                // Log slow loading images
+                if (entry.duration > 2000) {
+                    console.warn('Slow loading image detected:', entry.name);
+                }
+            }
+        });
+    });
+    
+    observer.observe({ entryTypes: ['resource'] });
+    
+    // Monitor Core Web Vitals
+    if ('web-vital' in window) {
+        import('web-vitals').then(({ getCLS, getFID, getFCP, getLCP, getTTFB }) => {
+            getCLS(console.log);
+            getFID(console.log);
+            getFCP(console.log);
+            getLCP(console.log);
+            getTTFB(console.log);
+        });
+    }
+}
 
 // Mobile-specific optimizations
 function initMobileOptimizations() {
@@ -27,28 +58,44 @@ function initMobileOptimizations() {
     // Improve touch scrolling
     document.body.style.webkitOverflowScrolling = 'touch';
     
-    // Optimize images for mobile
+    // Advanced image optimization
     const images = document.querySelectorAll('img');
     images.forEach(img => {
         img.loading = 'lazy';
         img.decoding = 'async';
         
-        // Add loading state
-        img.classList.add('loading');
+        // Add progressive loading classes
+        img.classList.add('progressive-load', 'blur-load');
         
-        // Handle successful load
+        // Handle successful load with enhanced effects
         img.addEventListener('load', function() {
-            this.classList.remove('loading');
+            this.classList.remove('progressive-load', 'blur-load');
             this.classList.add('loaded');
+            
+            // Add subtle animation
+            this.style.transform = 'scale(1.02)';
+            setTimeout(() => {
+                this.style.transform = 'scale(1)';
+            }, 200);
         });
         
-        // Add error handling
+        // Enhanced error handling with retry
         img.addEventListener('error', function() {
-            this.style.display = 'none';
-            const placeholder = document.createElement('div');
-            placeholder.className = 'image-placeholder';
-            placeholder.innerHTML = '<i class="fas fa-image"></i><p>Image not available</p>';
-            this.parentNode.insertBefore(placeholder, this);
+            const retryCount = this.dataset.retryCount || 0;
+            if (retryCount < 2) {
+                // Retry loading with different quality
+                const originalSrc = this.src;
+                const newSrc = originalSrc.replace('q=60', 'q=40');
+                this.src = newSrc;
+                this.dataset.retryCount = parseInt(retryCount) + 1;
+            } else {
+                // Show placeholder after retries
+                this.style.display = 'none';
+                const placeholder = document.createElement('div');
+                placeholder.className = 'image-placeholder';
+                placeholder.innerHTML = '<i class="fas fa-image"></i><p>Image not available</p>';
+                this.parentNode.insertBefore(placeholder, this);
+            }
         });
     });
     
@@ -84,6 +131,46 @@ function initMobileOptimizations() {
     });
     
     iframes.forEach(iframe => iframeObserver.observe(iframe));
+    
+    // Register Service Worker for image caching
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/sw.js')
+            .then(registration => {
+                console.log('Service Worker registered:', registration);
+            })
+            .catch(error => {
+                console.log('Service Worker registration failed:', error);
+            });
+    }
+}
+
+// Image compression utility
+function compressImageUrl(url, width = 400, quality = 60, format = 'webp') {
+    // For Unsplash images, add compression parameters
+    if (url.includes('unsplash.com')) {
+        const baseUrl = url.split('?')[0];
+        const params = new URLSearchParams();
+        params.set('ixlib', 'rb-4.0.3');
+        params.set('auto', 'format');
+        params.set('fit', 'crop');
+        params.set('w', width.toString());
+        params.set('q', quality.toString());
+        if (format === 'webp') {
+            params.set('fm', 'webp');
+        }
+        return `${baseUrl}?${params.toString()}`;
+    }
+    return url;
+}
+
+// Optimize all image URLs
+function optimizeAllImages() {
+    const images = document.querySelectorAll('img[src*="unsplash.com"]');
+    images.forEach(img => {
+        const originalSrc = img.src;
+        const optimizedSrc = compressImageUrl(originalSrc, 400, 60, 'webp');
+        img.src = optimizedSrc;
+    });
 }
 
 // Countdown Timer Functionality
