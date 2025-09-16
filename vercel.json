@@ -1,23 +1,17 @@
 {
   "version": 2,
-  "name": "uk-tamil-awards-2025",
   "builds": [
     {
       "src": "server.js",
       "use": "@vercel/node"
     }
   ],
-  "routes": [
+  "rewrites": [
     {
-      "src": "/(.*)",
-      "dest": "/server.js"
+      "source": "/(.*)",
+      "destination": "/server.js"
     }
   ],
-  "functions": {
-    "server.js": {
-      "maxDuration": 10
-    }
-  },
   "headers": [
     {
       "source": "/(.*)",
