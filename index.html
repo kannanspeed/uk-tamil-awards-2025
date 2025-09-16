@@ -6,7 +6,7 @@
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="theme-color" content="#667eea">
+    <meta name="theme-color" content="#FFD700">
     <title>UK Tamil Awards 2025</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -18,6 +18,9 @@
     <link rel="preload" as="image" href="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=60&fm=webp">
 </head>
 <body>
+    <!-- Skip to content link for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
     <!-- Header - Modern Glassmorphism -->
     <header class="header">
         <nav class="nav">
@@ -41,6 +44,7 @@
     </header>
 
     <!-- Hero Section - Parallax Scrolling with Timer -->
+    <main id="main-content">
     <section id="home" class="hero">
         <div class="hero-background">
             <div class="parallax-layer layer-1"></div>
@@ -627,6 +631,7 @@
             </div>
         </div>
     </footer>
+    </main>
 
     <!-- Image Popup Modal -->
     <div id="imagePopup" class="image-popup">
@@ -635,18 +640,6 @@
             <div class="image-container">
                 <div class="loading-spinner" id="loadingSpinner">Loading...</div>
                 <img src="https://czmvzpnsyxehilmeuncm.supabase.co/storage/v1/object/sign/uktamil/WhatsApp%20Image%202025-09-16%20at%202.53.42%20AM.jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8yNDIwMDM4ZC1iY2UxLTRiZjctYmY0NS03Zjc2ZDY3YzNiZGIiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJ1a3RhbWlsL1doYXRzQXBwIEltYWdlIDIwMjUtMDktMTYgYXQgMi41My40MiBBTS5qcGVnIiwiaWF0IjoxNzU3OTc1MDk1LCJleHAiOjE3ODk1MTEwOTV9.iWgMIbWGJOh2uJZuCzTu25ZNp6OhzZppP0sweFjBtWE" alt="UK Tamil Awards Announcement" class="popup-image" id="popupImage" onload="hideLoadingSpinner()" onerror="showError()">
-            </div>
-        </div>
-    </div>
-
-    <!-- Classic Theater Curtain -->
-    <div id="theaterCurtain" class="theater-curtain">
-        <div class="curtain-left"></div>
-        <div class="curtain-right"></div>
-        <div class="curtain-center">
-            <div class="curtain-logo">
-                <h2>UK Tamil Awards 2025</h2>
-                <p>Presented by</p>
             </div>
         </div>
     </div>
