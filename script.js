@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initSmoothScrolling();
     initScrollAnimations();
     initImagePopup();
+    initTheaterCurtain();
     initPerformanceMonitoring();
 });
 
@@ -836,6 +837,11 @@ function initImagePopup() {
         console.log('Closing popup...');
         popup.classList.remove('show');
         document.body.style.overflow = 'auto';
+        
+        // Show theater curtain after popup closes
+        setTimeout(() => {
+            showTheaterCurtain();
+        }, 500);
     }
     
     // Close button click
@@ -854,4 +860,70 @@ function initImagePopup() {
             closePopup();
         }
     });
+}
+
+// Theater Curtain Functionality
+function initTheaterCurtain() {
+    const curtain = document.getElementById('theaterCurtain');
+    let curtainShown = false;
+    let scrollStarted = false;
+    
+    // Show theater curtain
+    function showTheaterCurtain() {
+        if (curtainShown) return;
+        
+        console.log('Showing theater curtain...');
+        curtain.classList.add('curtain-closed');
+        curtainShown = true;
+        document.body.style.overflow = 'hidden';
+    }
+    
+    // Open theater curtain
+    function openTheaterCurtain() {
+        if (!curtainShown || scrollStarted) return;
+        
+        console.log('Opening theater curtain...');
+        curtain.classList.remove('curtain-closed');
+        curtain.classList.add('curtain-open');
+        scrollStarted = true;
+        document.body.style.overflow = 'auto';
+        
+        // Remove curtain from DOM after animation
+        setTimeout(() => {
+            curtain.style.display = 'none';
+        }, 3000);
+    }
+    
+    // Handle scroll events
+    function handleScroll() {
+        if (curtainShown && !scrollStarted) {
+            openTheaterCurtain();
+        }
+    }
+    
+    // Handle touch events for mobile
+    function handleTouch() {
+        if (curtainShown && !scrollStarted) {
+            openTheaterCurtain();
+        }
+    }
+    
+    // Add event listeners
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('touchstart', handleTouch, { passive: true });
+    window.addEventListener('wheel', handleScroll, { passive: true });
+    
+    // Also open curtain on any click
+    document.addEventListener('click', function() {
+        if (curtainShown && !scrollStarted) {
+            openTheaterCurtain();
+        }
+    });
+    
+    // Open curtain after 10 seconds automatically
+    setTimeout(() => {
+        if (curtainShown && !scrollStarted) {
+            openTheaterCurtain();
+        }
+    }, 10000);
 }
