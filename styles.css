@@ -300,7 +300,7 @@ html {
 }
 
 .layer-2 {
-    background: url('https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') center/cover;
+    background: url('https://czmvzpnsyxehilmeuncm.supabase.co/storage/v1/object/sign/gal/DSC00517.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8yNDIwMDM4ZC1iY2UxLTRiZjctYmY0NS03Zjc2ZDY3YzNiZGIiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJnYWwvRFNDMDA1MTcuanBnIiwiaWF0IjoxNzU4MTM3MjIwLCJleHAiOjE3ODk2NzMyMjB9.MIthmnsAqBUgNsAq0UdUbwgnN5cHUdKLxsIhe2A_Bn4') center/cover;
     opacity: 0.4;
     z-index: 2;
 }
