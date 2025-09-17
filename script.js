@@ -1,7 +1,14 @@
 // Error handling for external scripts
 window.addEventListener('error', function(e) {
     // Suppress errors from external scripts (browser extensions, etc.)
-    if (e.filename && (e.filename.includes('evmAsk.js') || e.filename.includes('all.js') || e.filename.includes('extension'))) {
+    if (e.filename && (
+        e.filename.includes('evmAsk.js') || 
+        e.filename.includes('all.js') || 
+        e.filename.includes('extension') ||
+        e.filename.includes('inpage.js') ||
+        e.filename.includes('metamask') ||
+        e.filename.includes('wallet')
+    )) {
         e.preventDefault();
         console.log('External script error suppressed:', e.message);
         return false;
@@ -11,9 +18,14 @@ window.addEventListener('error', function(e) {
 // Handle unhandled promise rejections
 window.addEventListener('unhandledrejection', function(e) {
     // Suppress promise rejections from external scripts
-    if (e.reason && e.reason.message && e.reason.message.includes('message channel closed')) {
+    if (e.reason && e.reason.message && (
+        e.reason.message.includes('message channel closed') ||
+        e.reason.message.includes('MetaMask') ||
+        e.reason.message.includes('Failed to connect') ||
+        e.reason.message.includes('extension not found')
+    )) {
         e.preventDefault();
-        console.log('External script promise rejection suppressed');
+        console.log('External script promise rejection suppressed:', e.reason.message);
         return false;
     }
 });
