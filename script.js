@@ -1,3 +1,23 @@
+// Error handling for external scripts
+window.addEventListener('error', function(e) {
+    // Suppress errors from external scripts (browser extensions, etc.)
+    if (e.filename && (e.filename.includes('evmAsk.js') || e.filename.includes('all.js') || e.filename.includes('extension'))) {
+        e.preventDefault();
+        console.log('External script error suppressed:', e.message);
+        return false;
+    }
+});
+
+// Handle unhandled promise rejections
+window.addEventListener('unhandledrejection', function(e) {
+    // Suppress promise rejections from external scripts
+    if (e.reason && e.reason.message && e.reason.message.includes('message channel closed')) {
+        e.preventDefault();
+        console.log('External script promise rejection suppressed');
+        return false;
+    }
+});
+
 // DOM Content Loaded
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize all functionality
@@ -13,6 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initImagePopup();
     initPerformanceMonitoring();
     initFloatingVideoCard();
+    initAboutVideoCard();
 });
 
 // Performance monitoring for images
@@ -858,6 +879,91 @@ function initFloatingVideoCard() {
     });
     
     console.log('Floating video card initialized');
+}
+
+// About Us Video Card Functionality
+function initAboutVideoCard() {
+    const aboutVideo = document.getElementById('aboutVideo');
+    const aboutPlayBtn = document.getElementById('aboutVideoPlayBtn');
+    const aboutMuteBtn = document.getElementById('aboutVideoMuteBtn');
+    const aboutVideoCard = document.querySelector('.about-floating-video-card .video-card-3d');
+    
+    if (!aboutVideo || !aboutPlayBtn || !aboutMuteBtn) {
+        console.log('About video elements not found');
+        return;
+    }
+    
+    let isAboutPlaying = false;
+    let isAboutMuted = true; // Start muted for better UX
+    
+    // Play/Pause functionality
+    aboutPlayBtn.addEventListener('click', function() {
+        if (isAboutPlaying) {
+            aboutVideo.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+            aboutPlayBtn.innerHTML = '<i class="fas fa-play"></i>';
+            isAboutPlaying = false;
+        } else {
+            aboutVideo.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+            aboutPlayBtn.innerHTML = '<i class="fas fa-pause"></i>';
+            isAboutPlaying = true;
+        }
+    });
+    
+    // Mute/Unmute functionality
+    aboutMuteBtn.addEventListener('click', function() {
+        if (isAboutMuted) {
+            aboutVideo.contentWindow.postMessage('{"event":"command","func":"unMute","args":""}', '*');
+            aboutMuteBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+            isAboutMuted = false;
+        } else {
+            aboutVideo.contentWindow.postMessage('{"event":"command","func":"mute","args":""}', '*');
+            aboutMuteBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
+            isAboutMuted = true;
+        }
+    });
+    
+    // Enhanced 3D hover effects
+    if (aboutVideoCard) {
+        aboutVideoCard.addEventListener('mouseenter', function() {
+            this.style.transform = 'rotateY(15deg) rotateX(5deg) translateZ(30px) scale(1.05)';
+        });
+        
+        aboutVideoCard.addEventListener('mouseleave', function() {
+            this.style.transform = '';
+        });
+        
+        // Touch interactions for mobile
+        let touchStartY = 0;
+        let touchStartX = 0;
+        
+        aboutVideoCard.addEventListener('touchstart', function(e) {
+            touchStartY = e.touches[0].clientY;
+            touchStartX = e.touches[0].clientX;
+        });
+        
+        aboutVideoCard.addEventListener('touchend', function(e) {
+            const touchEndY = e.changedTouches[0].clientY;
+            const touchEndX = e.changedTouches[0].clientX;
+            const deltaY = touchStartY - touchEndY;
+            const deltaX = touchStartX - touchEndX;
+            
+            // Simple tap detection
+            if (Math.abs(deltaY) < 10 && Math.abs(deltaX) < 10) {
+                // Toggle play/pause on tap
+                if (isAboutPlaying) {
+                    aboutVideo.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+                    aboutPlayBtn.innerHTML = '<i class="fas fa-play"></i>';
+                    isAboutPlaying = false;
+                } else {
+                    aboutVideo.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+                    aboutPlayBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                    isAboutPlaying = true;
+                }
+            }
+        });
+    }
+    
+    console.log('About video card initialized');
 }
 
 // Popup image loading functions

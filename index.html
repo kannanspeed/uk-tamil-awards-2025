@@ -4,16 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="mobile-web-app-capable" content="yes">
+    
+    <!-- Content Security Policy to prevent external script injection -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' https: data: blob:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.youtube.com https://www.google.com https://cdnjs.cloudflare.com; object-src 'none';">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="theme-color" content="#FFD700">
     <title>UK Tamil Awards 2025</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpeg" href="https://czmvzpnsyxehilmeuncm.supabase.co/storage/v1/object/sign/uktamil/WhatsApp%20Image%202025-09-16%20at%206.01.01%20PM.jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8yNDIwMDM4ZC1iY2UxLTRiZjctYmY0NS03Zjc2ZDY3YzNiZGIiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJ1a3RhbWlsL1doYXRzQXBwIEltYWdlIDIwMjUtMDktMTYgYXQgNi4wMS4wMSBQTS5qcGVnIiwiaWF0IjoxNzU4MTIxMjcwLCJleHAiOjE3ODk2NTcyNzB9.5eG_a_N9bsdjmlFEL7bmb8MhF2yBTJStEU8HZd-c8Ho">
+    <link rel="shortcut icon" type="image/jpeg" href="https://czmvzpnsyxehilmeuncm.supabase.co/storage/v1/object/sign/uktamil/WhatsApp%20Image%202025-09-16%20at%206.01.01%20PM.jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8yNDIwMDM4ZC1iY2UxLTRiZjctYmY0NS03Zjc2ZDY3YzNiZGIiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJ1a3RhbWlsL1doYXRzQXBwIEltYWdlIDIwMjUtMDktMTYgYXQgNi4wMS4wMSBQTS5qcGVnIiwiaWF0IjoxNzU4MTIxMjcwLCJleHAiOjE3ODk2NTcyNzB9.5eG_a_N9bsdjmlFEL7bmb8MhF2yBTJStEU8HZd-c8Ho">
+    <link rel="apple-touch-icon" href="https://czmvzpnsyxehilmeuncm.supabase.co/storage/v1/object/sign/uktamil/WhatsApp%20Image%202025-09-16%20at%206.01.01%20PM.jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8yNDIwMDM4ZC1iY2UxLTRiZjctYmY0NS03Zjc2ZDY3YzNiZGIiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJ1a3RhbWlsL1doYXRzQXBwIEltYWdlIDIwMjUtMDktMTYgYXQgNi4wMS4wMSBQTS5qcGVnIiwiaWF0IjoxNzU4MTIxMjcwLCJleHAiOjE3ODk2NTcyNzB9.5eG_a_N9bsdjmlFEL7bmb8MhF2yBTJStEU8HZd-c8Ho">
+    
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <!-- Preload critical images -->
-    <link rel="preload" as="image" href="https://czmvzpnsyxehilmeuncm.supabase.co/storage/v1/object/sign/uktamil/AWARDS%20CATEGORIES.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8yNDIwMDM4ZC1iY2UxLTRiZjctYmY0NS03Zjc2ZDY3YzNiZGIiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJ1a3RhbWlsL0FXQVJEUyBDQVRFR09SSUVTLnBuZyIsImlhdCI6MTc1ODA1MTUyNSwiZXhwIjoxNzg5NTg3NTI1fQ.WJhaO__k9ELFgt_xNPZehPp4USvDmjAnFbnjk3-BOOw">
+    <link rel="preload" as="image" href="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80">
+    <link rel="preload" as="image" href="https://czmvzpnsyxehilmeuncm.supabase.co/storage/v1/object/sign/uktamil/AWARDS%20CATEGORIES.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8yNDIwMDM4ZC1iY2UxLTRiZjctYmY0NS03Zjc2ZDY3YzNiZGIiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJ1a3RhbWlsL0FXQVJEUyBDQVRFR09SSUVTLnBuZyIsImlhdCI6MTc1ODEzMTkyMiwiZXhwIjoxNzg5NjY3OTIyfQ.kn3e_GcInibXsMKj03sRUPsfcxWmT_htZ5SQLNumu6U">
     <link rel="preload" as="image" href="https://images.unsplash.com/photo-1511578314322-379afb476865?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60&fm=webp">
     <link rel="preload" as="image" href="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=60&fm=webp">
     <link rel="preload" as="image" href="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=60&fm=webp">
@@ -76,7 +86,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="video-card-glow"></div>
             </div>
         </div>
         
@@ -105,47 +114,14 @@
         </div>
     </section>
 
-    <!-- Awards Categories Banner Section -->
-    <section class="nominations-banner">
+    <!-- Awards Categories Image Section -->
+    <section class="awards-categories-image">
         <div class="container">
-            <div class="banner-content">
-                <h2 class="banner-title">UK Tamil Awards 2025 - Award Categories</h2>
-                <div class="awards-categories-content">
-                    <div class="categories-grid">
-                        <div class="category-card">
-                            <div class="category-icon">🎭</div>
-                            <h3>Arts & Entertainment</h3>
-                            <p>Recognizing excellence in performing arts, music, and creative expression</p>
-                        </div>
-                        <div class="category-card">
-                            <div class="category-icon">💼</div>
-                            <h3>Business & Entrepreneurship</h3>
-                            <p>Celebrating innovative business leaders and successful entrepreneurs</p>
-                        </div>
-                        <div class="category-card">
-                            <div class="category-icon">🏆</div>
-                            <h3>Sports & Athletics</h3>
-                            <p>Honoring outstanding achievements in sports and physical excellence</p>
-                        </div>
-                        <div class="category-card">
-                            <div class="category-icon">🎓</div>
-                            <h3>Education & Academia</h3>
-                            <p>Recognizing contributions to education and academic excellence</p>
-                        </div>
-                        <div class="category-card">
-                            <div class="category-icon">💻</div>
-                            <h3>Technology & Innovation</h3>
-                            <p>Celebrating tech pioneers and innovative solutions</p>
-                        </div>
-                        <div class="category-card">
-                            <div class="category-icon">❤️</div>
-                            <h3>Community Service</h3>
-                            <p>Honoring those who make a positive impact in their communities</p>
-                        </div>
-                    </div>
-                </div>
-                <p class="banner-subtitle">Nominations are now open! Click below to nominate yourself or someone you know</p>
-                <button class="nomination-btn">Nominate Now</button>
+            <div class="image-content">
+                <img src="https://czmvzpnsyxehilmeuncm.supabase.co/storage/v1/object/sign/uktamil/AWARDS%20CATEGORIES.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8yNDIwMDM4ZC1iY2UxLTRiZjctYmY0NS03Zjc2ZDY3YzNiZGIiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJ1a3RhbWlsL0FXQVJEUyBDQVRFR09SSUVTLnBuZyIsImlhdCI6MTc1ODEzMTkyMiwiZXhwIjoxNzg5NjY3OTIyfQ.kn3e_GcInibXsMKj03sRUPsfcxWmT_htZ5SQLNumu6U" 
+                     alt="UK Tamil Awards 2025 - Award Categories" 
+                     class="awards-categories-img"
+                     loading="lazy">
             </div>
         </div>
     </section>
@@ -218,11 +194,30 @@
                         </div>
                     </div>
                 </div>
-                <div class="about-image">
-                    <picture>
-                        <source srcset="https://images.unsplash.com/photo-1511578314322-379afb476865?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60&fm=webp" type="image/webp">
-                        <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60" alt="Awards Ceremony" loading="lazy">
-                    </picture>
+                <!-- Floating Video Card for About Section -->
+                <div class="about-floating-video-card">
+                    <div class="video-card-3d">
+                        <div class="video-container">
+                            <iframe 
+                                id="aboutVideo"
+                                src="https://www.youtube.com/embed/RrQUguIpRNo?enablejsapi=1&controls=1&modestbranding=1&rel=0&showinfo=0&autoplay=0&mute=1&loop=1&playlist=RrQUguIpRNo"
+                                title="UK Tamil Awards 2025 - About Us"
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen>
+                            </iframe>
+                            <div class="video-overlay">
+                                <div class="video-controls">
+                                    <button class="video-play-btn" id="aboutVideoPlayBtn">
+                                        <i class="fas fa-play"></i>
+                                    </button>
+                                    <button class="video-mute-btn" id="aboutVideoMuteBtn">
+                                        <i class="fas fa-volume-up"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -234,13 +229,22 @@
             <h2 class="section-title">Our Founder Members</h2>
             <div class="founders-grid">
                 <div class="founder-card">
-                    <h3 class="premium-name">Shivanthy Susinthiran</h3>
+                    <div class="founder-profile">
+                        <img src="https://czmvzpnsyxehilmeuncm.supabase.co/storage/v1/object/sign/uktamil/Shivanthy%20Susinthiran.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8yNDIwMDM4ZC1iY2UxLTRiZjctYmY0NS03Zjc2ZDY3YzNiZGIiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJ1a3RhbWlsL1NoaXZhbnRoeSBTdXNpbnRoaXJhbi5wbmciLCJpYXQiOjE3NTgxMzI2MzUsImV4cCI6MTc4OTY2ODYzNX0.gIlg8wpiRv2tx0ANdrDyzT-iem_xOs4tmxmfbmFELdo" alt="Shivanthy Susinthiran" class="founder-image">
+                        <h3 class="premium-name">Shivanthy Susinthiran</h3>
+                    </div>
                 </div>
                 <div class="founder-card">
-                    <h3 class="premium-name">Paul Sathianesan</h3>
+                    <div class="founder-profile">
+                        <img src="https://czmvzpnsyxehilmeuncm.supabase.co/storage/v1/object/sign/uktamil/Paul%20Sathianesan.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8yNDIwMDM4ZC1iY2UxLTRiZjctYmY0NS03Zjc2ZDY3YzNiZGIiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJ1a3RhbWlsL1BhdWwgU2F0aGlhbmVzYW4ucG5nIiwiaWF0IjoxNzU4MTMyNTY3LCJleHAiOjE3ODk2Njg1Njd9.vfBiWvI5GPVmi_mmF9FijC2xPU9El0bMFnOtqOoSayY" alt="Paul Sathianesan" class="founder-image">
+                        <h3 class="premium-name">Paul Sathianesan</h3>
+                    </div>
                 </div>
                 <div class="founder-card">
-                    <h3 class="premium-name">Ratnam Sugunanatharaja</h3>
+                    <div class="founder-profile">
+                        <img src="https://czmvzpnsyxehilmeuncm.supabase.co/storage/v1/object/sign/uktamil/Ratnam%20Sugunanatharaja.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8yNDIwMDM4ZC1iY2UxLTRiZjctYmY0NS03Zjc2ZDY3YzNiZGIiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJ1a3RhbWlsL1JhdG5hbSBTdWd1bmFuYXRoYXJhamEucG5nIiwiaWF0IjoxNzU4MTMyNjA2LCJleHAiOjE3ODk2Njg2MDZ9.c4sU6P1ipJt91aAMtHks2HKF4Q8AbfhtTKclQ7TZboo" alt="Ratnam Sugunanatharaja" class="founder-image">
+                        <h3 class="premium-name">Ratnam Sugunanatharaja</h3>
+                    </div>
                 </div>
             </div>
         </div>
@@ -252,19 +256,34 @@
             <h2 class="section-title">Our Co-Founder Members</h2>
             <div class="co-founders-grid">
                 <div class="co-founder-card">
-                    <h3 class="premium-name">Thurairajah Pirabaharan</h3>
+                    <div class="founder-profile">
+                        <img src="https://czmvzpnsyxehilmeuncm.supabase.co/storage/v1/object/sign/uktamil/Thurairajah%20Pirabaharan.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8yNDIwMDM4ZC1iY2UxLTRiZjctYmY0NS03Zjc2ZDY3YzNiZGIiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJ1a3RhbWlsL1RodXJhaXJhamFoIFBpcmFiYWhhcmFuLnBuZyIsImlhdCI6MTc1ODEzMjY0MywiZXhwIjoxNzg5NjY4NjQzfQ.A1i-k_ZaZwH33bisMnk8u_0Phzk5N-qYmwimAEZRYBQ" alt="Thurairajah Pirabaharan" class="founder-image">
+                        <h3 class="premium-name">Thurairajah Pirabaharan</h3>
+                    </div>
                 </div>
                 <div class="co-founder-card">
-                    <h3 class="premium-name">Selvanayagam Sathanathan</h3>
+                    <div class="founder-profile">
+                        <img src="https://czmvzpnsyxehilmeuncm.supabase.co/storage/v1/object/sign/uktamil/Selvanayagam%20Sathanathan.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8yNDIwMDM4ZC1iY2UxLTRiZjctYmY0NS03Zjc2ZDY3YzNiZGIiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJ1a3RhbWlsL1NlbHZhbmF5YWdhbSBTYXRoYW5hdGhhbi5wbmciLCJpYXQiOjE3NTgxMzI2MTQsImV4cCI6MTc4OTY2ODYxNH0.YDUVzJiIFWgqPpN_zBCQSFwVpMkHgOE-FiWik3fKMYk" alt="Selvanayagam Sathanathan" class="founder-image">
+                        <h3 class="premium-name">Selvanayagam Sathanathan</h3>
+                    </div>
                 </div>
                 <div class="co-founder-card">
-                    <h3 class="premium-name">Krisha Kamal</h3>
+                    <div class="founder-profile">
+                        <img src="https://czmvzpnsyxehilmeuncm.supabase.co/storage/v1/object/sign/uktamil/Krisha%20Kamal.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8yNDIwMDM4ZC1iY2UxLTRiZjctYmY0NS03Zjc2ZDY3YzNiZGIiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJ1a3RhbWlsL0tyaXNoYSBLYW1hbC5wbmciLCJpYXQiOjE3NTgxMzI1MzEsImV4cCI6MTc4OTY2ODUzMX0.P6LUZTaa9i2K3Wumxzx5y5hHnG-qgXW9g0PYW2NdZCE" alt="Krisha Kamal" class="founder-image">
+                        <h3 class="premium-name">Krisha Kamal</h3>
+                    </div>
                 </div>
                 <div class="co-founder-card">
-                    <h3 class="premium-name">Veluppillai Jegendirabose</h3>
+                    <div class="founder-profile">
+                        <img src="https://czmvzpnsyxehilmeuncm.supabase.co/storage/v1/object/sign/uktamil/Veluppillai%20Jegendirabose.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8yNDIwMDM4ZC1iY2UxLTRiZjctYmY0NS03Zjc2ZDY3YzNiZGIiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJ1a3RhbWlsL1ZlbHVwcGlsbGFpIEplZ2VuZGlyYWJvc2UucG5nIiwiaWF0IjoxNzU4MTMyNjcyLCJleHAiOjE3ODk2Njg2NzJ9.Xhv8mdlba8FFBsFkLHinMwiMF-KjeFo8RAjZLte1KPc" alt="Veluppillai Jegendirabose" class="founder-image">
+                        <h3 class="premium-name">Veluppillai Jegendirabose</h3>
+                    </div>
                 </div>
                 <div class="co-founder-card">
-                    <h3 class="premium-name">Deva Mahathevan</h3>
+                    <div class="founder-profile">
+                        <img src="https://czmvzpnsyxehilmeuncm.supabase.co/storage/v1/object/sign/uktamil/Deva%20Mahathevan.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8yNDIwMDM4ZC1iY2UxLTRiZjctYmY0NS03Zjc2ZDY3YzNiZGIiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJ1a3RhbWlsL0RldmEgTWFoYXRoZXZhbi5wbmciLCJpYXQiOjE3NTgxMzI1NTYsImV4cCI6MTc4OTY2ODU1Nn0.DkVqSfAezEDkdzDnuJ7x6RQqVxgLhR08kvqJfUP85LY" alt="Deva Mahathevan" class="founder-image">
+                        <h3 class="premium-name">Deva Mahathevan</h3>
+                    </div>
                 </div>
             </div>
         </div>
@@ -567,7 +586,7 @@
             <button class="popup-close">&times;</button>
             <div class="image-container">
                 <div class="loading-spinner" id="loadingSpinner">Loading...</div>
-                <img src="https://czmvzpnsyxehilmeuncm.supabase.co/storage/v1/object/sign/uktamil/WhatsApp%20Image%202025-09-16%20at%202.53.42%20AM.jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8yNDIwMDM4ZC1iY2UxLTRiZjctYmY0NS03Zjc2ZDY3YzNiZGIiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJ1a3RhbWlsL1doYXRzQXBwIEltYWdlIDIwMjUtMDktMTYgYXQgMi41My40MiBBTS5qcGVnIiwiaWF0IjoxNzU3OTc1MDk1LCJleHAiOjE3ODk1MTEwOTV9.iWgMIbWGJOh2uJZuCzTu25ZNp6OhzZppP0sweFjBtWE" alt="UK Tamil Awards Announcement" class="popup-image" id="popupImage" onload="hideLoadingSpinner()" onerror="showError()">
+                <img src="https://czmvzpnsyxehilmeuncm.supabase.co/storage/v1/object/sign/uktamil/POP%20UP.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8yNDIwMDM4ZC1iY2UxLTRiZjctYmY0NS03Zjc2ZDY3YzNiZGIiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJ1a3RhbWlsL1BPUCBVUC5wbmciLCJpYXQiOjE3NTgxMjEzNTMsImV4cCI6MTc4OTY1NzM1M30.xeVCTtVq4TxDx73LojwRL_blDqJjmvZElU_LTxU479A" alt="UK Tamil Awards Popup" class="popup-image" id="popupImage" onload="hideLoadingSpinner()" onerror="showError()">
             </div>
         </div>
     </div>
