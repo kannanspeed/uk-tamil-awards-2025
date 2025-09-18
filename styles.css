@@ -1154,7 +1154,7 @@ html {
 }
 
 .about-text p {
-    color: var(--text-light);
+    color: white;
     margin-bottom: 1rem; /* Reduced margin for mobile */
     line-height: 1.6; /* Better line height for mobile */
     font-size: 0.95rem; /* Slightly smaller for mobile */
