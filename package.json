@@ -4,21 +4,19 @@
   "description": "UK Tamil Awards 2025 - A beautiful, modern website for the UK Tamil Awards event",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "dev": "node server.js"
+    "start": "node server.js"
   },
   "keywords": [
     "tamil",
     "awards",
     "uk",
     "event",
-    "website",
-    "static"
+    "website"
   ],
   "author": "UK Tamil Awards Team",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.18.2"
+    "express": "4.21.2"
   },
   "engines": {
     "node": ">=18.0.0"
