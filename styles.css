@@ -726,7 +726,7 @@ html {
 
 .cta-button {
     background: var(--bg-gradient);
-    color: var(--text-dark);
+    color: white;
     border: 2px solid var(--primary-gold);
     padding: 0.8rem 2rem; /* Reduced padding for mobile */
     font-size: 1rem; /* Slightly smaller for mobile */
