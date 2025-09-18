@@ -38,6 +38,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initParallaxScrolling();
     initMobileMenu();
     initGalleryFilters();
+    initGalleryLightbox();
     initSponsorCarousel();
     initContactForm();
     initSmoothScrolling();
@@ -279,7 +280,7 @@ function initMobileMenu() {
 
 // Gallery Filter Functionality
 function initGalleryFilters() {
-    const galleryFilters = document.querySelectorAll('.gallery-filter');
+    const galleryFilters = document.querySelectorAll('.filter-btn');
     const galleryItems = document.querySelectorAll('.gallery-item');
     
     galleryFilters.forEach(filter => {
@@ -302,6 +303,151 @@ function initGalleryFilters() {
             });
         });
     });
+}
+
+// Gallery Lightbox Functionality
+function initGalleryLightbox() {
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxTitle = document.getElementById('lightbox-title');
+    const lightboxDescription = document.getElementById('lightbox-description');
+    const lightboxClose = document.querySelector('.lightbox-close');
+    const lightboxPrev = document.getElementById('lightbox-prev');
+    const lightboxNext = document.getElementById('lightbox-next');
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    
+    let currentImageIndex = 0;
+    let filteredImages = [];
+    
+    // Initialize lightbox with all gallery items
+    function updateFilteredImages() {
+        filteredImages = Array.from(galleryItems).filter(item => 
+            !item.classList.contains('hidden')
+        );
+    }
+    
+    // Open lightbox
+    function openLightbox(index) {
+        updateFilteredImages();
+        currentImageIndex = index;
+        const currentItem = filteredImages[currentImageIndex];
+        
+        if (currentItem) {
+            const img = currentItem.querySelector('img');
+            const title = currentItem.querySelector('.gallery-overlay h3');
+            const description = currentItem.querySelector('.gallery-overlay p');
+            
+            lightboxImg.src = img.src;
+            lightboxImg.alt = img.alt;
+            lightboxTitle.textContent = title ? title.textContent : '';
+            lightboxDescription.textContent = description ? description.textContent : '';
+            
+            lightbox.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+            
+            // Update navigation buttons
+            updateNavigationButtons();
+        }
+    }
+    
+    // Close lightbox
+    function closeLightbox() {
+        lightbox.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+    
+    // Navigate to previous image
+    function prevImage() {
+        if (filteredImages.length > 0) {
+            currentImageIndex = (currentImageIndex - 1 + filteredImages.length) % filteredImages.length;
+            openLightbox(currentImageIndex);
+        }
+    }
+    
+    // Navigate to next image
+    function nextImage() {
+        if (filteredImages.length > 0) {
+            currentImageIndex = (currentImageIndex + 1) % filteredImages.length;
+            openLightbox(currentImageIndex);
+        }
+    }
+    
+    // Update navigation buttons visibility
+    function updateNavigationButtons() {
+        if (filteredImages.length <= 1) {
+            lightboxPrev.style.display = 'none';
+            lightboxNext.style.display = 'none';
+        } else {
+            lightboxPrev.style.display = 'block';
+            lightboxNext.style.display = 'block';
+        }
+    }
+    
+    // Add click event listeners to gallery items
+    galleryItems.forEach((item, index) => {
+        item.addEventListener('click', () => {
+            updateFilteredImages();
+            const filteredIndex = filteredImages.indexOf(item);
+            if (filteredIndex !== -1) {
+                openLightbox(filteredIndex);
+            }
+        });
+    });
+    
+    // Close lightbox events
+    lightboxClose.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) {
+            closeLightbox();
+        }
+    });
+    
+    // Navigation events
+    lightboxPrev.addEventListener('click', prevImage);
+    lightboxNext.addEventListener('click', nextImage);
+    
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+        if (lightbox.style.display === 'block') {
+            switch(e.key) {
+                case 'Escape':
+                    closeLightbox();
+                    break;
+                case 'ArrowLeft':
+                    prevImage();
+                    break;
+                case 'ArrowRight':
+                    nextImage();
+                    break;
+            }
+        }
+    });
+    
+    // Touch/swipe support for mobile
+    let touchStartX = 0;
+    let touchEndX = 0;
+    
+    lightbox.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+    });
+    
+    lightbox.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+    });
+    
+    function handleSwipe() {
+        const swipeThreshold = 50;
+        const diff = touchStartX - touchEndX;
+        
+        if (Math.abs(diff) > swipeThreshold) {
+            if (diff > 0) {
+                nextImage(); // Swipe left - next image
+            } else {
+                prevImage(); // Swipe right - previous image
+            }
+        }
+    }
 }
 
 // Sponsor Carousel Auto-scroll
